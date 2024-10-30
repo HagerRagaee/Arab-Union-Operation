@@ -5,11 +5,12 @@ class Textfieldwidget extends StatefulWidget {
   final bool showTime;
   final bool showDate;
 
-  Textfieldwidget(
-      {required this.hint,
-      this.showDate = false,
-      super.key,
-      this.showTime = false});
+  Textfieldwidget({
+    required this.hint,
+    this.showDate = false,
+    super.key,
+    this.showTime = false,
+  });
 
   @override
   State<Textfieldwidget> createState() => _TextfieldwidgetState();
@@ -48,6 +49,7 @@ class _TextfieldwidgetState extends State<Textfieldwidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: true,
       maxLines: 4,
       minLines: 1,
       keyboardType: TextInputType.multiline,

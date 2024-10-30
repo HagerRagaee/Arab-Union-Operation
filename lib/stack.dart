@@ -3,20 +3,24 @@
 import 'package:flutter/material.dart';
 
 class StackData extends StatefulWidget {
-  StackData(
-      {super.key,
-      required this.label,
-      this.showTime = false,
-      this.showDate = false,
-      required this.controller,
-      this.size = 0.0,
-      this.numberType = false,
-      required this.validator});
+  StackData({
+    super.key,
+    required this.label,
+    this.showTime = false,
+    this.showDate = false,
+    required this.controller,
+    this.size = 0.0,
+    this.numberType = false,
+    required this.validator,
+    this.readOnly = false,
+  });
   String? label;
   final bool showTime;
   final bool showDate;
   final double? size;
   final numberType;
+  final bool readOnly;
+
   TextEditingController? controller = TextEditingController();
   String? Function(String?)? validator;
 
@@ -75,7 +79,8 @@ class _StackDataState extends State<StackData> {
                 ),
               ),
               TextFormField(
-                validator: widget.validator,
+                readOnly: widget.readOnly,
+                validator: widget.readOnly ? null : widget.validator,
                 controller: widget.controller,
                 maxLines: 4,
                 minLines: 1,
@@ -103,8 +108,12 @@ class _StackDataState extends State<StackData> {
           child: Text(
             widget.label!,
             style: TextStyle(
-                fontSize: widget.size == 0.0 ? 15 : widget.size!,
-                fontWeight: FontWeight.bold),
+              color: widget.readOnly
+                  ? const Color.fromARGB(255, 148, 148, 148)
+                  : Colors.black,
+              fontSize: widget.size == 0.0 ? 15 : widget.size!,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],
