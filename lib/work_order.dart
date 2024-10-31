@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:omar_company/logic.dart';
+import 'package:omar_company/dataLayer.dart';
 import 'package:omar_company/stack.dart';
+import 'package:omar_company/stackDateField.dart';
 import 'package:signature/signature.dart';
 import 'dart:typed_data';
 import 'dart:convert';
@@ -226,7 +226,7 @@ class _WorkOrderState extends State<WorkOrder> {
                           TableRow(children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.all(4.0),
-                              child: StackData(
+                              child: StakeDateField(
                                 label: ":تاريخ انتهاء المأمورية",
                                 controller: controllerEndDate,
                                 showDate: true,
@@ -240,7 +240,7 @@ class _WorkOrderState extends State<WorkOrder> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(4.0),
-                              child: StackData(
+                              child: StakeDateField(
                                 label: ":تاريخ بدء المأمورية",
                                 controller: controllerStartDate,
                                 showDate: true,
@@ -398,10 +398,11 @@ class _WorkOrderState extends State<WorkOrder> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               saveUserData();
+                              _clearFields();
                             }
                           },
                           child: const Text(
-                            "ارسال",
+                            " حفظ و ارسال",
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
